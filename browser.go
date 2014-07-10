@@ -7,6 +7,8 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"os"
+	"os/exec"
 	"path/filepath"
 )
 
@@ -39,4 +41,11 @@ func OpenReader(r io.Reader) error {
 // OpenURL opens a new browser window pointing to url.
 func OpenURL(url string) error {
 	return openBrowser(url)
+}
+
+func runCmd(prog string, args ...string) error {
+	cmd := exec.Command(prog, args...)
+	cmd.Stdout = os.Stdout
+	cmd.Stderr = os.Stderr
+	return cmd.Run()
 }
