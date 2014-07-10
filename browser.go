@@ -35,7 +35,12 @@ func OpenReader(r io.Reader) error {
 	if err := f.Close(); err != nil {
 		return fmt.Errorf("browser: caching temporary file failed: %v", err)
 	}
-	return OpenFile(f.Name())
+	oldname := f.Name()
+	newname := oldname + ".html"
+	if err := os.Rename(oldname, newname); err != nil {
+		return fmt.Errorf("browser: renaming temporary file failed: %v", err)
+	}
+	return OpenFile(newname)
 }
 
 // OpenURL opens a new browser window pointing to url.
