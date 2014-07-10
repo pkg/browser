@@ -7,7 +7,7 @@ func ExampleOpenFile() {
 }
 
 func ExampleOpenReader() {
-	// https://github.com/rust-lang/rust/issues/13871
+	// https://github.com/rust-lang/rust/issues/13871
 	const quote = `There was a night when winds from unknown spaces
 whirled us irresistibly into limitless vacum beyond all thought and entity.
 Perceptions of the most maddeningly untransmissible sort thronged upon us;
