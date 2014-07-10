@@ -7,11 +7,16 @@ import (
 	"fmt"
 	"io"
 	"io/ioutil"
+	"path/filepath"
 )
 
 // OpenFile opens new browser window for the file path.
 func OpenFile(path string) error {
-	return openBrowser(path)
+	path, err := filepath.Abs(path)
+	if err != nil {
+		return err
+	}
+	return OpenURL("file://" + path)
 }
 
 // OpenReader consumes the contents of r and presents the
@@ -28,9 +33,7 @@ func OpenReader(r io.Reader) error {
 	if err := f.Close(); err != nil {
 		return fmt.Errorf("browser: caching temporary file failed: %v", err)
 	}
-
-	//defer os.Remove(f.Name())
-	return openBrowser(f.Name())
+	return OpenFile(f.Name())
 }
 
 // OpenURL opens a new browser window pointing to url.

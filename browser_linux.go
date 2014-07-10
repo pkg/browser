@@ -5,6 +5,10 @@ import (
 )
 
 func openBrowser(url string) error {
-	cmd := exec.Command("xdg-open", url)
-	return cmd.Run()
+	sensibleBrowser, err := exec.LookPath("sensible-browser")
+	if err != nil {
+		// sensible-browser not availble, try xdg-open
+		return exec.Command("xdg-open", url).Run()
+	}
+	return exec.Command(sensibleBrowser, url).Run()
 }
