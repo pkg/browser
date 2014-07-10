@@ -1,3 +1,15 @@
+// Open is a simple example of the github.com/pkg/browser package.
+//
+// Usage:
+//
+//    # Open a file in a browser window
+//    Open $FILE
+//
+//    # Open a URL in a browser window
+//    Open $URL
+//
+//    # Open the contents of stdin in a browser window
+//    cat $SOMEFILE | Open
 package main
 
 import (
