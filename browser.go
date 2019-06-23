@@ -55,9 +55,24 @@ func OpenURL(url string) error {
 }
 
 func runCmd(prog string, args ...string) error {
-	cmd := exec.Command(prog, args...)
+	var cmd *exec.Cmd
+
+	browser := envBrowserCmd()
+	if browser != "" {
+		sh, flag := shell()
+		url := args[len(args)-1]
+		browserCmd := fmtBrowserCmd(browser, url)
+		cmd = exec.Command(sh, flag, browserCmd)
+	} else {
+		cmd = exec.Command(prog, args...)
+	}
+
 	cmd.Stdout = Stdout
 	cmd.Stderr = Stderr
 	setFlags(cmd)
 	return cmd.Run()
+}
+
+func envBrowserCmd() string {
+	return os.Getenv("BROWSER")
 }
