@@ -1,6 +1,7 @@
 package browser
 
 import (
+	"errors"
 	"os/exec"
 	"time"
 )
@@ -26,7 +27,7 @@ func openBrowser(url string) error {
 		return err
 	}
 	if !appearsSuccessful(cmd, 3*time.Second) {
-		return error.New("Unable to successfully run xdg-open")
+		return errors.New("Unable to successfully run xdg-open")
 	}
 	return nil
 }
