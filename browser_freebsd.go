@@ -2,13 +2,14 @@ package browser
 
 import (
 	"errors"
+	"fmt"
 	"os/exec"
 )
 
 func openBrowser(url string) error {
 	err := runCmd("xdg-open", url)
-	if e, ok := err.(*exec.Error); ok && e.Err == exec.ErrNotFound {
-		return errors.New("xdg-open: command not found - install xdg-utils from ports(8)")
+	if errors.Is(err, exec.ErrNotFound) {
+		return fmt.Errorf("%w - install xdg-utils from ports(8)", err)
 	}
 	return err
 }
