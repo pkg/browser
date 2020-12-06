@@ -32,19 +32,19 @@ func OpenFile(path string) error {
 func OpenReader(r io.Reader) error {
 	f, err := ioutil.TempFile("", "browser")
 	if err != nil {
-		return fmt.Errorf("browser: could not create temporary file: %v", err)
+		return fmt.Errorf("browser: could not create temporary file: %w", err)
 	}
 	if _, err := io.Copy(f, r); err != nil {
 		f.Close()
-		return fmt.Errorf("browser: caching temporary file failed: %v", err)
+		return fmt.Errorf("browser: caching temporary file failed: %w", err)
 	}
 	if err := f.Close(); err != nil {
-		return fmt.Errorf("browser: caching temporary file failed: %v", err)
+		return fmt.Errorf("browser: caching temporary file failed: %w", err)
 	}
 	oldname := f.Name()
 	newname := oldname + ".html"
 	if err := os.Rename(oldname, newname); err != nil {
-		return fmt.Errorf("browser: renaming temporary file failed: %v", err)
+		return fmt.Errorf("browser: renaming temporary file failed: %w", err)
 	}
 	return OpenFile(newname)
 }
