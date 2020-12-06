@@ -1,8 +1,6 @@
-on:
-  push:
-    branches:
-    - master
-name: Push Event
+on: [push, pull_request]
+
+name: CI
 jobs:
   test:
     runs-on: ubuntu-latest
