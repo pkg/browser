@@ -1,3 +1,3 @@
-module github.com/pkg/browser
+module github.com/cli/browser
 
 go 1.14
