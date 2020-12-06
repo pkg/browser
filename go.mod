@@ -1,3 +1,3 @@
 module github.com/cli/browser
 
-go 1.14
+go 1.13
