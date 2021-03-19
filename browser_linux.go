@@ -1,26 +1,23 @@
 package browser
 
 import (
-	"errors"
 	"os/exec"
+	"strings"
 )
 
 func openBrowser(url string) error {
-	browserPath, err := lookPath("xdg-open", "wslview")
-	if err != nil {
-		return err
-	}
-	return runCmd(browserPath, url)
-}
+	providers := []string{"xdg-open", "x-www-browser", "www-browser", "wslview"}
 
-func lookPath(cmdName, fallbackName string) (string, error) {
-	cmdPath, err := exec.LookPath(cmdName)
-	if errors.Is(err, exec.ErrNotFound) {
-		if wslPath, err := exec.LookPath(fallbackName); err == nil {
-			return wslPath, nil
+	// There are multiple possible providers to open a browser on linux
+	// One of them is xdg-open, another is x-www-browser, then there's www-browser, etc.
+	// Look for one that exists and run it
+	for _, provider := range providers {
+		if _, err := exec.LookPath(provider); err == nil {
+			return runCmd(provider, url)
 		}
 	}
-	return cmdPath, err
+
+	return &exec.Error{Name: strings.Join(providers, ","), Err: exec.ErrNotFound}
 }
 
 func setFlags(cmd *exec.Cmd) {}
