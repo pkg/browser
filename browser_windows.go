@@ -3,11 +3,9 @@
 package browser
 
 import "os/exec"
+
 const sW_SHOWNORMAL = 1
 
 func openBrowser(url string) error {
-   return shellExecute(0, "", url, "", "", sW_SHOWNORMAL)
-}
-
-func setFlags(cmd *exec.Cmd) {
+	return shellExecute(0, "", url, "", "", sW_SHOWNORMAL)
 }
