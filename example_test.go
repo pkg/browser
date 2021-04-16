@@ -1,6 +1,11 @@
 package browser
 
-import "strings"
+import (
+	"bytes"
+	"fmt"
+	"os/exec"
+	"strings"
+)
 
 func ExampleOpenFile() {
 	OpenFile("index.html")
@@ -20,4 +25,14 @@ are now partly lost to my memory and partly incapable of presentation to others.
 func ExampleOpenURL() {
 	const url = "http://golang.org/"
 	OpenURL(url)
+}
+
+func ExampleOpenURLWithOptions() {
+	out := &bytes.Buffer{}
+	const url = "http://golang.org/"
+	OpenURL(url, func(cmd *exec.Cmd) {
+		cmd.Stdout = out
+		cmd.Stderr = out
+	})
+	fmt.Printf("browser open output: %q\n", out.String())
 }
