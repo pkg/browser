@@ -5,7 +5,7 @@ package browser
 import "os/exec"
 const SW_SHOWNORMAL = 1
 
-func openBrowser(url string) error {
+func openBrowser(url string, cmdOptions []CmdOption) error {
    return ShellExecute(0, "", url, "", "", SW_SHOWNORMAL)
 }
 

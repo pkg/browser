@@ -8,7 +8,7 @@ import (
 	"runtime"
 )
 
-func openBrowser(url string) error {
+func openBrowser(url string, cmdOptions []CmdOption) error {
 	return fmt.Errorf("openBrowser: unsupported operating system: %v", runtime.GOOS)
 }
 
