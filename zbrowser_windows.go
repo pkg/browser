@@ -43,7 +43,7 @@ var (
 	procShellExecuteW = modshell32.NewProc("ShellExecuteW")
 )
 
-func ShellExecute(hwnd int, verb string, file string, args string, cwd string, showCmd int) (err error) {
+func shellExecute(hwnd int, verb string, file string, args string, cwd string, showCmd int) (err error) {
 	var _p0 *uint16
 	_p0, err = syscall.UTF16PtrFromString(verb)
 	if err != nil {
@@ -64,10 +64,10 @@ func ShellExecute(hwnd int, verb string, file string, args string, cwd string, s
 	if err != nil {
 		return
 	}
-	return _ShellExecute(hwnd, _p0, _p1, _p2, _p3, showCmd)
+	return _shellExecute(hwnd, _p0, _p1, _p2, _p3, showCmd)
 }
 
-func _ShellExecute(hwnd int, verb *uint16, file *uint16, args *uint16, cwd *uint16, showCmd int) (err error) {
+func _shellExecute(hwnd int, verb *uint16, file *uint16, args *uint16, cwd *uint16, showCmd int) (err error) {
 	r1, _, e1 := syscall.Syscall6(procShellExecuteW.Addr(), 6, uintptr(hwnd), uintptr(unsafe.Pointer(verb)), uintptr(unsafe.Pointer(file)), uintptr(unsafe.Pointer(args)), uintptr(unsafe.Pointer(cwd)), uintptr(showCmd))
 	if r1 == 0 {
 		err = errnoErr(e1)
