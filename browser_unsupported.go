@@ -4,7 +4,6 @@ package browser
 
 import (
 	"fmt"
-	"os/exec"
 	"runtime"
 )
 
