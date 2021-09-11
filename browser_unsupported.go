@@ -1,4 +1,4 @@
-// +build !linux,!windows,!darwin,!openbsd,!freebsd
+// +build !linux,!windows,!darwin,!openbsd,!freebsd,!netbsd
 
 package browser
 
