@@ -4,7 +4,7 @@
 
 Package browser provides helpers to open files, readers, and urls in a browser window.
 
-The choice of which browser is started is entirely client dependant.
+The choice of which browser is started is entirely client dependent.
 
 
 
