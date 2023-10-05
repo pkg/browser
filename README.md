@@ -7,7 +7,7 @@ This fork adds:
 
 - `OpenReader` error wrapping;
 - `ErrNotFound` error wrapping on BSD;
-- Go 1.13 support.
+- Go 1.21 support.
 
 ## Usage
 
