@@ -6,7 +6,6 @@ package browser
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -30,7 +29,7 @@ func OpenFile(path string) error {
 // OpenReader consumes the contents of r and presents the
 // results in a new browser window.
 func OpenReader(r io.Reader) error {
-	f, err := ioutil.TempFile("", "browser.*.html")
+	f, err := os.CreateTemp("", "browser.*.html")
 	if err != nil {
 		return fmt.Errorf("browser: could not create temporary file: %w", err)
 	}
