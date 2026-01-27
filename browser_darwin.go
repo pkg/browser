@@ -1,5 +1,5 @@
 package browser
 
-func openBrowser(url string) error {
-	return runCmd("open", url)
+func (o *Opener) openBrowser(url string) error {
+	return o.runCmd("open", url)
 }
