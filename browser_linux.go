@@ -5,7 +5,7 @@ import (
 	"strings"
 )
 
-func openBrowser(url string) error {
+func (o *Opener) openBrowser(url string) error {
 	providers := []string{"xdg-open", "x-www-browser", "www-browser"}
 
 	// There are multiple possible providers to open a browser on linux
@@ -13,7 +13,7 @@ func openBrowser(url string) error {
 	// Look for one that exists and run it
 	for _, provider := range providers {
 		if _, err := exec.LookPath(provider); err == nil {
-			return runCmd(provider, url)
+			return o.runCmd(provider, url)
 		}
 	}
 
