@@ -1,6 +1,6 @@
 // Package browser provides helpers to open files, readers, and urls in a browser window.
 //
-// The choice of which browser is started is entirely client dependant.
+// The choice of which browser is started is entirely client dependent.
 package browser
 
 import (
@@ -18,7 +18,7 @@ var Stdout io.Writer = os.Stdout
 // Stderr is the io.Writer to which executed commands write standard error.
 var Stderr io.Writer = os.Stderr
 
-// OpenFile opens new browser window for the file path.
+// OpenFile opens a new browser window for the file path.
 func OpenFile(path string) error {
 	path, err := filepath.Abs(path)
 	if err != nil {
