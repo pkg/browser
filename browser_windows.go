@@ -1,7 +1,6 @@
 package browser
 
-import "golang.org/x/sys/windows"
-
+// Windows ShellExecute drops fragments on file: URLs. FileProtocolHandler keeps them.
 func openBrowser(url string) error {
-	return windows.ShellExecute(0, nil, windows.StringToUTF16Ptr(url), nil, nil, windows.SW_SHOWNORMAL)
+	return runCmd("rundll32", "url.dll,FileProtocolHandler", url)
 }
