@@ -3,7 +3,7 @@ package browser
 import "strings"
 
 func ExampleOpenFile() {
-	OpenFile("index.html")
+	_ = OpenFile("index.html")
 }
 
 func ExampleOpenReader() {
@@ -14,10 +14,10 @@ Perceptions of the most maddeningly untransmissible sort thronged upon us;
 perceptions of infinity which at the time convulsed us with joy, yet which
 are now partly lost to my memory and partly incapable of presentation to others.`
 	r := strings.NewReader(quote)
-	OpenReader(r)
+	_ = OpenReader(r)
 }
 
 func ExampleOpenURL() {
 	const url = "http://golang.org/"
-	OpenURL(url)
+	_ = OpenURL(url)
 }

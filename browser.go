@@ -1,12 +1,11 @@
 // Package browser provides helpers to open files, readers, and urls in a browser window.
 //
-// The choice of which browser is started is entirely client dependant.
+// The choice of which browser is started is entirely client dependent.
 package browser
 
 import (
 	"fmt"
 	"io"
-	"io/ioutil"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -30,16 +29,16 @@ func OpenFile(path string) error {
 // OpenReader consumes the contents of r and presents the
 // results in a new browser window.
 func OpenReader(r io.Reader) error {
-	f, err := ioutil.TempFile("", "browser.*.html")
+	f, err := os.CreateTemp("", "browser.*.html")
 	if err != nil {
-		return fmt.Errorf("browser: could not create temporary file: %v", err)
+		return fmt.Errorf("browser: could not create temporary file: %w", err)
 	}
 	if _, err := io.Copy(f, r); err != nil {
 		f.Close()
-		return fmt.Errorf("browser: caching temporary file failed: %v", err)
+		return fmt.Errorf("browser: caching temporary file failed: %w", err)
 	}
 	if err := f.Close(); err != nil {
-		return fmt.Errorf("browser: caching temporary file failed: %v", err)
+		return fmt.Errorf("browser: caching temporary file failed: %w", err)
 	}
 	return OpenFile(f.Name())
 }

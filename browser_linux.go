@@ -6,7 +6,7 @@ import (
 )
 
 func openBrowser(url string) error {
-	providers := []string{"xdg-open", "x-www-browser", "www-browser"}
+	providers := []string{"xdg-open", "x-www-browser", "www-browser", "wslview"}
 
 	// There are multiple possible providers to open a browser on linux
 	// One of them is xdg-open, another is x-www-browser, then there's www-browser, etc.
